@@ -1,0 +1,16 @@
+FRONTEND TEMPLATES - CREDITS
+
+- LOGIN/REGISTRATION FORM: https://colorlib.com/wp/template/login-form-06/
+- LOGIN/REGISTRATION ERROR PAGE: https://colorlib.com/wp/template/colorlib-error-404-4/
+- LANDING PAGE: https://preview.uideck.com/items/bolt-demo/home-1.html
+
+----
+IMAGES USED - CREDITS
+
+- LOGIN/REGISTRATION FORM & ERROR PAGE: Photo by Alessio Lin (https://unsplash.com/@lin_alessio?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash (https://unsplash.com/s/photos/speed?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- LOGOUT PAGE: Photo by Milan Csizmadia (https://unsplash.com/@milancsizmadia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash (https://unsplash.com/s/photos/formula-1?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- LANDING PAGE: Photo by Michael Heng (https://unsplash.com/@michaelhlk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash (https://unsplash.com/s/photos/formula-1?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  
+----
+
+  

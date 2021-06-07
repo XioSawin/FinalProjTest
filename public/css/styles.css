@@ -1,0 +1,34 @@
+h1 {
+    color: blue;
+}
+
+h2 {
+    color: brown;
+}
+
+label {
+    font-weight: bold;
+    font-style: italic;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.jumbotron {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+

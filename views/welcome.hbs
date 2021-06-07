@@ -1,0 +1,84 @@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+<!-- Slicknav -->
+<link rel="stylesheet" type="text/css" href="css/slicknav.css">
+<!-- Off Canvas Menu -->
+<link rel="stylesheet" type="text/css" href="css/menu_sideslide.css">
+<!-- Color Switcher -->
+<link rel="stylesheet" type="text/css" href="css/vegas.min.css">
+<!-- Animate -->
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<!-- Main Style -->
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!-- Responsive Style -->
+<link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+<!-- Intro Section Start -->
+<section class="intro">
+    <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="heading-count">
+                    <h2>¡Hola {{nombre}}!</h2>
+                </div>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+                <button class="btn btn-common" onclick="location.href='/logout'">Cerrar Sesión</button>
+                <a href="#services" class="target-scroll page-scroll"><i class="lni-chevron-down"></i></a>
+          </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section End -->
+
+<!-- Order Section Start -->
+<section id="contact" class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-8 col-xs-12 text-center">
+                <h2 class="section-title">
+                    Haz tu pedido
+                </h2>
+            </div>
+        </div>
+
+        <form>
+          <div class="row">
+            <!-- Contact form -->
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Tu Pedido</label>
+                  <textarea class="form-control" rows="4" id="order" name="order" required data-error="Escribe tu pedido"></textarea>
+                </div>
+              </div>
+              <!-- Submit Button -->
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-common" id="form-submit"> Enviar pedido</button>
+                  <div id="msgSubmit" class="h3 text-center hidden"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+</section>
+<!-- Order Section End -->
+
+
+<!--
+
+<h1 class="alert alert-success p-4">
+    <h2>¡Hola {{nombre}}!</h2>
+
+    <div class="float-right">
+        <button class="btn btn-warning" onclick="location.href='/logout'">
+            <b>Cerrar Sesión</b><br><img src="{{foto}}" width="75" alt="">
+        </button>
+    </div>
+
+    <b><a href="#">{{email}}</a></b>
+</h1>
+
+-->
