@@ -5,9 +5,6 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 
 const userModel = require('../models/users');
 const enviarEthereal = require('../email/ethereal');
-//const jwt = require('jsonwebtoken');
-
-// require('dotenv').config();
 
 const strategyOptions = {
     usernameField: 'email',
