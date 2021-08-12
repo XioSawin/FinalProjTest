@@ -11,8 +11,4 @@ router.get('/:email', mensajesController.getMsgByEmail);
 
 router.post('/:email/message', mensajesController.postMessage);
 
-//router.patch('/:id', auth, productsController.updateProduct);
-
-//router.delete('/:id', auth, productsController.deleteProduct);
-
 module.exports = router;
