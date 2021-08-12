@@ -1,5 +1,4 @@
 const express = require('express');
-//const { UserBindingContext } = require('twilio/lib/rest/chat/v2/service/user/userBinding');
 const app = express();
 
 const handlebars = require('express-handlebars');
