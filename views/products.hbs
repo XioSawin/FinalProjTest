@@ -1,0 +1,61 @@
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" >
+<!-- Slicknav -->
+<link rel="stylesheet" type="text/css" href="css/slicknav.css">
+<!-- Off Canvas Menu -->
+<link rel="stylesheet" type="text/css" href="css/menu_sideslide.css">
+<!-- Color Switcher -->
+<link rel="stylesheet" type="text/css" href="css/vegas.min.css">
+<!-- Animate -->
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<!-- Main Style -->
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!-- Responsive Style -->
+<link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+<!-- Intro Section Start -->
+<section class="intro">
+    <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="heading-count">
+                    <h2>Ve nuestros productos</h2>
+                </div>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+                <a href="#services" class="target-scroll page-scroll"><i class="lni-chevron-down"></i></a>
+          </div>
+        </div>
+    </div>
+</section>
+<!-- Intro Section End -->
+
+<!-- Product Section Start -->
+<section id="contact" class="section-padding">
+    <div class="container">
+
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-3">
+            {{#each productos}}
+              <div class="team-item text-center">
+                <div class="team-img">
+                  <img class="img-fluid" src="{{this.foto}}">
+                  <div class="team-overlay">
+                    <div class="text-center">
+                      <p>Precio: ${{this.precio}}</p>
+                      <p>Stock: {{this.stock}}</p>
+                      <p>ID: {{this._id}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="info-text">
+                  <h3>{{this.nombre}}</h3>
+                  <p>{{this.descripcion}}</p>
+                </div>
+              </div>
+              {{/each}}
+          </div>
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->

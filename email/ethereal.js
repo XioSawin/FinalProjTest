@@ -1,18 +1,20 @@
 const nodemailer = require('nodemailer');
 
+require('dotenv').config();
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-        user: 'clovis.kris@ethereal.email',
-        pass: 'XV2WSN8xc6KzP7bXnF'
+        user: process.env.EMAIL_ADMIN,
+        pass: process.env.EMAIL_PWORD
     }
 });
 
-const enviarEthereal = (asunto, mensaje) => {
+const enviarEthereal = (email, asunto, mensaje) => {
     const mailOptions ={
         from: 'Servidor Node.js',
-        to: 'clovis.kris@ethereal.email',
+        to: email,
         subject: asunto,
         html: mensaje
     }
@@ -21,8 +23,7 @@ const enviarEthereal = (asunto, mensaje) => {
         if(err) {
             console.log(err);
         }
-        else console.log(info);
     })
 }
 
-module.exports = enviarEmail();
+module.exports = {enviarEthereal};

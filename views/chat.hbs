@@ -1,0 +1,57 @@
+<h1>Centro de mensajes</h1>
+<div class="messages" id="message-center">
+</div>
+<form id="form" action="" enctype="application/x-www-form-urlencoded" onsubmit="return addMessage(this)">
+    <input type="text" id="userEmail" placeholder="Tu email">
+    <input type="text" id="tipo" placeholder="User o System?">
+    <input type="text" id="message" placeholder="Dinos algo...">
+    <input type="submit" value="Enviar">
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    function getFullDate(){
+        let date = new Date();
+        let d = date.getDate();
+        let mo = date.getMonth() + 1;
+        let y = date.getFullYear();
+        let h = date.getHours();
+        let mi = date.getMinutes();
+        let s = date.getSeconds();
+        return d + '/' + mo + '/' + y + ' ' + h + ':' + mi + ':' + s;
+    }
+    
+    function addMessage(event) {
+        let today = getFullDate();
+
+        let mensaje = {
+            userEmail: document.getElementById('userEmail').value,
+            tipo: document.getElementById('tipo').value,
+            timestamp: today,
+            message: document.getElementById('message').value
+        };
+
+        event.preventDefault();
+
+        socket.emit('new-message', mensaje);
+            return false;
+    }
+
+    function renderMessages(data) {
+        var html = data.map(function(elem, index) {
+            return(`<div>
+                        <strong style= "color: blue">${elem.userEmail} - ${elem.tipo} </strong> [${elem.timestamp}]: <i style="color:green">${elem.message}</i> </br> 
+                    </div`)
+            }).join(" ");
+        
+        document.getElementById('message-center').innerHTML = html;
+    }
+
+    socket.on('messages', function(data) {
+        console.log(data);
+        renderMessages(data);
+    })
+    
+ </script>
