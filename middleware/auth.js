@@ -2,23 +2,40 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
-
+const bCrypt = require('bcrypt');
 const userModel = require('../models/users');
-const enviarEthereal = require('../email/ethereal');
+const sendEmail = require('../email/ethereal');
+//const jwt = require('jsonwebtoken');
+
+// require('dotenv').config();
 
 const strategyOptions = {
-    usernameField: 'email',
-    passwordField: 'password'
+    usernameField: 'username',
+    passwordField: 'password', 
+    passReqToCallback: true,
 }
 
 const strategyJWT = {
     secretOrKey: process.env.JWT_SECRET_KEY,
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
 };
+/*--------------*/
 
-const register = async(req, email, password, done) => {
+passport.serializeUser(function(user, done) {
+    done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+    userModel.findById(id).then(user => {
+        console.log(user);
+        done(err, user);
+    })
+});
+
+/*--------------*/
+const register = async(req, username, password, done) => {
     try{
-        userModel.findOne({username: email}, function(err, user){
+        userModel.findOne({username: username}, function(err, user){
             console.log(username);
             if(err){
                 console.log(err);
@@ -37,7 +54,7 @@ const register = async(req, email, password, done) => {
             } else {
                 const {name, address, admin, phoneNumber} = req.body;
                     const user = {
-                        username: email,
+                        username,
                         password,
                         name, 
                         address,
@@ -50,7 +67,7 @@ const register = async(req, email, password, done) => {
                         .then(() => res.send('Registro exitoso'))
                         .catch((error) => ('Error en el regisro: ' + error))
                     
-                    enviarEthereal(process.env.EMAIL_ADMIN, "Nuevo Registro", JSON.stringify(newUser));
+                    sendEmail.enviarEthereal(process.env.EMAIL_ADMIN, "Nuevo Registro", JSON.stringify(newUser));
 
                     return done(null, newUser);
             }
@@ -61,10 +78,11 @@ const register = async(req, email, password, done) => {
     }
 }
 
-const logUser = async(email, password, done) => {
+const logUser = async(req, username, password, done) => {
     try{
-        userModel.findOne({username: email},
+        userModel.findOne({username: username},
             function(err, user) {
+                console.log(user);
                 // if there is an error
                 if(err) {
                     return res.status(400).json({
@@ -83,6 +101,7 @@ const logUser = async(email, password, done) => {
     
                 // if right user but wrong pwrd
                 const validate = isValidPassword(user, password);
+                console.log(validate);
 
                 if(!validate) {
                     return res.status(401).json({
@@ -90,7 +109,7 @@ const logUser = async(email, password, done) => {
                         message: 'Contraseña incorrecta. Vuelva a intentarlo'
                     })
                 }
-    
+                console.log(user);
                 // tout est OK
                 return done(null, user);
             }

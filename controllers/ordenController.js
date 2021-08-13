@@ -3,7 +3,7 @@ const app = express();
 const ordenModel = require('../models/ordenes');
 const carritoModel = require('../models/carritos');
 const userModel = require('../models/users');
-const enviarEthereal = require('../email/ethereal');
+const sendEmail = require('../email/ethereal');
 
 app.use(express.json())
 
@@ -66,8 +66,8 @@ const checkout = (req, res, next) => {
         })
 
         const data = carritoModel.findByIdAndDelete({_id: cart.id});
-        enviarEthereal(process.env.EMAIL_ADMIN, `Nueva order - user ID: ${userID}`, JSON.stringify(order));
-        enviarEthereal(email, `¡Gracias por tu orden ${user.name}! - Te enviamos el detalle`, JSON.stringify(order));
+        sendEmail.enviarEthereal(process.env.EMAIL_ADMIN, `Nueva order - user ID: ${userID}`, JSON.stringify(order));
+        sendEmail.enviarEthereal(email, `¡Gracias por tu orden ${user.name}! - Te enviamos el detalle`, JSON.stringify(order));
 
         return res.status(201).send(order);
     }

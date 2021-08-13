@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+
 const carritoModel = require('../models/carritos');
 const productoModel = require('../models/productos');
 
@@ -23,6 +24,8 @@ const getTimestamp = () => {
 const getCarrito = (req, res, next) =>{
     const userID = req.params.id;
 
+    carritoModel.findById
+
     let cart = carritoModel.findOne({ userID: userID });
 
     if(cart && cart.items.length>0){
@@ -33,23 +36,36 @@ const getCarrito = (req, res, next) =>{
 };
 
 const addProducto = (req, res, next) => {
-    const userID = req.params.id;
-    const {productID, cantidad, userEmail, direccion, } = req.body;
+    
+    const { userID, productID, cantidad, userEmail, direccion } = req.body;
 
+    console.log("------DATOS PASADOS EN EL BODY------");
+    console.log(userID);
+    console.log(productID);
+
+    // por alguna razón devuelven info sobre la collection, y no el carrito/producto a ingresar
+    // el status es 500: INTERNAL SERVER ERROR.
     let cart = carritoModel.findOne({ userID: userID });
-    let product = productoModel.findOne({ _id: productID });
+    let product = productoModel.findById({ productID });
+
+    //console.log("------CART QUERY------");
+    // console.log(cart);
+    //console.log("------PRODUCTO QUERY------");
+    // console.log(product);
 
     if(!product) {
         res.status(400).send('Producto no encontrado');
     }
 
     const precio = product.precio;
+    console.log(precio)
     const nombre = product.nombre;
 
     if(cart) {
         // si existe la relación carrito-usuario
         let productIndex = cart.productos.findIndex( p=> p.productID == productID);
 
+        console.log(productIndex);
         // si existe producto en el carrito +1 - else, add 1.
         if(productIndex > -1){
             let productItem = cart.productos[productIndex];
@@ -74,15 +90,17 @@ const addProducto = (req, res, next) => {
             timestamp: getTimestamp()
         });
 
+        console.log(newCart);
         return res.status(201).send(newCart);
     }
 };
 
 
 const deleteProducto = (req, res, next) => {
-    const { userID, productID } = req.params;
+    const { productID } = req.params;
+    const { userID } = req.body;
 
-    let cart = carritoModel.findOne({userID});
+    let cart = carritoModel.findOne({ userID : userID });
     let productIndex = cart.productos.findIndex(p => p.productID == productID);
 
     if(productIndex > -1) {

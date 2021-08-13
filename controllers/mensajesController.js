@@ -28,6 +28,7 @@ app.use(express.static('public'));
 
 const messagesModel = require('../models/mensajes');
 
+/*
 const getMessages = () => {
     const messages = messagesModel.find({});
 
@@ -51,7 +52,7 @@ io.on('connection', (socket) => {
         io.sockets.emit('messages', getMessages());
     })
 })
-
+*/
 const getChat = async(req, res) => {
     res.render("chat", {});
 }
@@ -64,12 +65,7 @@ const getMsgByEmail = async(req, res) =>  {
         .catch((err) => res.sendStatus(err))
 }
 
-const postMessage = async(req, res) => {
-
-}
-
 module.exports = {
     getChat,
-    getMsgByEmail,
-    postMessage
+    getMsgByEmail
 };

@@ -1,4 +1,5 @@
 const express = require('express');
+//const { UserBindingContext } = require('twilio/lib/rest/chat/v2/service/user/userBinding');
 const app = express();
 
 const handlebars = require('express-handlebars');
@@ -48,8 +49,12 @@ const getByCategory = (req, res, next) => {
 
 // add producto solo si se es admin
 const addProduct = (req, res, next) => {
+    
     /*
-    if (!auth){
+
+    const isAdmin = req.user.admin;
+    console.log(isAdmin)
+    if (req.user.admin != "admin"){
         res.json({error: -1, descripcion: "ruta no autorizada"});
     } */
 
@@ -71,7 +76,10 @@ const addProduct = (req, res, next) => {
 
 const updateProduct = (req, res, next) =>{
     /*
-    if (!auth){
+
+    const isAdmin = req.user.admin;
+    console.log(isAdmin)
+    if (req.user.admin != "admin"){
         res.json({error: -1, descripcion: "ruta no autorizada"});
     } */
 
@@ -91,7 +99,10 @@ const updateProduct = (req, res, next) =>{
 
 const deleteProduct = (req, res, next) => {
     /*
-    if (!auth){
+
+    const isAdmin = req.user.admin;
+    console.log(isAdmin)
+    if (req.user.admin != "admin"){
         res.json({error: -1, descripcion: "ruta no autorizada"});
     } */
     
