@@ -9,6 +9,6 @@ router.get('/', mensajesController.getChat);
 
 router.get('/:email', mensajesController.getMsgByEmail);
 
-router.post('/:email/message', mensajesController.postMessage);
+//router.post('/:email/message', mensajesController.postMessage);
 
 module.exports = router;
