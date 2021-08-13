@@ -28,7 +28,7 @@
                         <div class="mb-4">
                             <h3>Iniciar Sesión</h3>
                         </div>
-                        <form action="/login" method="post">
+                        <form action="/api/auth/login" method="post">
                             <div class="form-group first">
                                 <input type="email" class="form-control" id="username" name="username" placeholder="Email " required>
                         
@@ -49,7 +49,7 @@
                         -->
                         </form>
                         <br>
-                        <button class="btn btn-block btn-primary" onclick="location.href = '/register'">¿No tienes una cuenta? Registrate </button>
+                        <button class="btn btn-block btn-primary" onclick="location.href = '/api/auth/register'">¿No tienes una cuenta? Registrate </button>
                     </div>
                 </div>
             </div>
