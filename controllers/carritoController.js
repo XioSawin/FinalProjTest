@@ -24,7 +24,7 @@ const getTimestamp = () => {
 const getCarrito = (req, res, next) =>{
     const userID = req.params.id;
 
-    carritoModel.findById
+    //carritoModel.findById
 
     let cart = carritoModel.findOne({ userID: userID });
 
