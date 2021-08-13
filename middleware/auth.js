@@ -4,10 +4,6 @@ const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 const bCrypt = require('bcrypt');
 const userModel = require('../models/users');
-const sendEmail = require('../email/ethereal');
-//const jwt = require('jsonwebtoken');
-
-// require('dotenv').config();
 
 const strategyOptions = {
     usernameField: 'username',
