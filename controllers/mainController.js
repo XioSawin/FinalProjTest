@@ -32,6 +32,8 @@ const logUser = async (req, res, next) => {
             if(err) {
                 return next(err);
             }
+            console.log('----USER FOUND PASS AUTHENTICATE----');
+            console.log(user);
 
             if(!user && info){
                 return res.status(401).json({message: info.message});
@@ -46,10 +48,11 @@ const logUser = async (req, res, next) => {
                     }
 
                     const body = {_id: user._id, email: user.username, admin: user.admin};
-                    const token = jwt.sign({user:body}, process.env.JWT_SECRET_KEY);
+                    const token = jwt.sign({user:body}, process.env.JWT_SECRET_KEY, {expiresIn: process.env.TOKEN_KEEP_ALIVE});
 
                     console.log(token);
                     return res.json({token});
+                    //return done(null, user);
                 }
             );
         } catch(error) {
