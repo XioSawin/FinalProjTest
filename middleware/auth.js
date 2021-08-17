@@ -9,9 +9,7 @@ const bCrypt = require('bcrypt');
 const userModel = require('../models/users');
 const sendEmail = require('../email/ethereal');
 const cookieParser = require('cookie-parser');
-//const jwt = require('jsonwebtoken');
 
-// require('dotenv').config();
 
 const strategyOptions = {
     usernameField: 'username',
@@ -83,22 +81,12 @@ const login = async(req, username, password, done) => {
                 if(err) {
                     console.log(err);
                     return done(null, false);
-                    /*
-                    return res.status(400).json({
-                        status: 400,
-                        message: err,
-                    });*/
                 }
     
                 // if username does not exist on db
                 if(!user) {
                     console.log('Email incorrecto. Vuelva a intentarlo')
                     return done(null, false);
-                    /*
-                    return res.status(401).json({
-                        status: 401,
-                        message: 'Email incorrecto. Vuelva a intentarlo'
-                    })*/
                 }
     
                 // if right user but wrong pwrd
