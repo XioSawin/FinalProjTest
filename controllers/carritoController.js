@@ -24,22 +24,9 @@ const getTimestamp = () => {
 const getCarrito = (req, res, next) =>{
     const { userID } = req.params;
 
-    //carritoModel.findById
-    //console.log(userID);
-
     carritoModel.findOne( {userID: userID} )
             .then((cart) => res.send(cart))
             .catch((err) => res.send(err))
-
-    /*
-    let cart = await carritoModel.findOne({ userID: userID });
-
-    if(cart && cart.items.length>0){
-        return res.sendStatus(201).send(newCart)
-    } else {
-        return res.send(null);
-    }
-    */
 };
 
 const addProducto = async (req, res, next) => {
@@ -50,15 +37,8 @@ const addProducto = async (req, res, next) => {
     console.log(userID);
     console.log(productID);
 
-    // por alguna razón devuelven info sobre la collection, y no el carrito/producto a ingresar
-    // el status es 500: INTERNAL SERVER ERROR.
     let cart = await carritoModel.findOne({ userID: userID });
     let product = await productoModel.findOne({_id: productID});
-
-    //console.log("------CART QUERY------");
-    // console.log(cart);
-    //console.log("------PRODUCTO QUERY------");
-    // console.log(product);
 
     if(!product) {
         res.status(400).send('Producto no encontrado');
@@ -85,15 +65,8 @@ const addProducto = async (req, res, next) => {
         cart.total += cantidad*precio;
 
         let savedCart = await cart.save()
-        /*
-        cart.save()
-            .then( () => res.sendStatus(201).send(newCart) )
-            .catch( (err) => res.status(400).json({
-                status: 400,
-                message: err
-            })) */
-
         return res.status(201).send(savedCart);
+        
     } else {
         // si no existe carrito para el usuario activo.
         const newCart = new carritoModel({
@@ -107,16 +80,7 @@ const addProducto = async (req, res, next) => {
 
         console.log(newCart);
 
-        let newSavedCart = newCart.save();
-
-        /*
-        newCart.save()
-            .then( () => res.sendStatus(201).send(newCart) )
-            .catch( (err) => res.status(400).json({
-                status: 400,
-                message: err
-            }))
-            */
+        let newSavedCart = await newCart.save();
         return res.status(201).send(newSavedCart);
         
     }
