@@ -10,7 +10,9 @@ const mainController = require('../controllers/mainController');
 // login
 router.get('/login', mainController.LoginOk);
 
-router.post('/login', passport.authenticate('login', {session: false , failureRedirect: '/faillogin'}),  mainController.Redirect); // ,  mainController.Redirect
+router.post('/login', passport.authenticate('login', {session: false , successRedirect: '/api/auth/login',
+                                                        failureRedirect: '/faillogin'
+                                                        }),  mainController.logUser); // ,  mainController.Redirect
 
 router.get('/faillogin', mainController.LoginFail);
 
@@ -19,7 +21,9 @@ router.get('/logout', mainController.Logout);
 // register
 router.get('/register', mainController.RegisterOk);
 
-router.post('/register', passport.authenticate('register', {session: false , failureRedirect: '/failregister'}),  mainController.Redirect); // ,  mainController.Redirect
+router.post('/register', passport.authenticate('register', {session: false , successRedirect: '/api/auth/login',
+                                                        failureRedirect: '/failregister'
+                                                        }),  mainController.register); // ,  mainController.Redirect
 
 router.get('/failregister', mainController.RegisterFail);
 
