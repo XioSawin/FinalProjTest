@@ -26,23 +26,27 @@
     function addMessage(event) {
         let today = getFullDate();
 
+        console.log(event);
+
         let mensaje = {
             userEmail: document.getElementById('userEmail').value,
             tipo: document.getElementById('tipo').value,
             timestamp: today,
-            message: document.getElementById('message').value
+            mensaje: document.getElementById('message').value
         };
 
-        event.preventDefault();
+        console.log(mensaje)
+
+        //event.preventDefault();
 
         socket.emit('new-message', mensaje);
-            return false;
+        return false;
     }
 
     function renderMessages(data) {
         var html = data.map(function(elem, index) {
             return(`<div>
-                        <strong style= "color: blue">${elem.userEmail} - ${elem.tipo} </strong> [${elem.timestamp}]: <i style="color:green">${elem.message}</i> </br> 
+                        <strong style= "color: blue">${elem.userEmail} - ${elem.tipo} </strong> [${elem.timestamp}]: <i style="color:green">${elem.mensaje}</i> </br> 
                     </div`)
             }).join(" ");
         

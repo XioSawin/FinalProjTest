@@ -20,5 +20,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use('/api', mainRoutes);
+//app.use('/', mainRoutes);
 
 module.exports = app;

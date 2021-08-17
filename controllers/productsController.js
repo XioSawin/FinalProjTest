@@ -54,7 +54,7 @@ const addProduct = (req, res, next) => {
 
     const isAdmin = req.user.admin;
     console.log(isAdmin)
-    if (req.user.admin != "admin"){
+    if (isAdmin != "admin"){
         res.json({error: -1, descripcion: "ruta no autorizada"});
     } */
 
@@ -79,7 +79,7 @@ const updateProduct = (req, res, next) =>{
 
     const isAdmin = req.user.admin;
     console.log(isAdmin)
-    if (req.user.admin != "admin"){
+    if (isAdmin != "admin"){
         res.json({error: -1, descripcion: "ruta no autorizada"});
     } */
 
@@ -102,7 +102,7 @@ const deleteProduct = (req, res, next) => {
 
     const isAdmin = req.user.admin;
     console.log(isAdmin)
-    if (req.user.admin != "admin"){
+    if (isAdmin != "admin"){
         res.json({error: -1, descripcion: "ruta no autorizada"});
     } */
     
