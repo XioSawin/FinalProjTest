@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const passport = require('passport');
 const jwt = require("jsonwebtoken");
 const handlebars = require('express-handlebars');
 
@@ -46,7 +45,7 @@ const logUser = async (req, res, next) => {
                         return next(error);
                     }
 
-                    const body = {_id: user._id, email: user.username};
+                    const body = {_id: user._id, email: user.username, admin: user.admin};
                     const token = jwt.sign({user:body}, process.env.JWT_SECRET_KEY);
 
                     console.log(token);
