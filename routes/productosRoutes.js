@@ -1,5 +1,3 @@
-// required
-//const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 const passport = require('passport');
@@ -7,9 +5,6 @@ const router = express.Router();
 
 const productsController = require('../controllers/productsController');
 const auth = require('../middleware/auth');
-
-// administrador
-//bconst administrador = true;
 
 // routes
 
